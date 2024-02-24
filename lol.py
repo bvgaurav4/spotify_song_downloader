@@ -69,9 +69,11 @@ for i in lol:
             'Authorization': 'Bearer ' + access_token
         }
     )
-    track_name = track_response.json()['name']
-    artist_name = track_response.json()['artists'][0]['name']
-
+    try:
+        track_name = track_response.json()['name']
+        artist_name = track_response.json()['artists'][0]['name']
+    except:
+        print(track_response)
     print(track_name + " " + artist_name)
     downloading(track_name+" "+artist_name)
 
