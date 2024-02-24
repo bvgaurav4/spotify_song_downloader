@@ -34,9 +34,10 @@ def downloading(query):
         
         try:
             stream = yt.streams.get_highest_resolution()
+            stream.download(output_path="C:\g\pproject\spotify_song_downloader\songs\mp4")
         except:
+            print("An error occurred while downloading the video.")
             return     
-        stream.download(output_path="C:\g\pproject\spotify_song_downloader\songs\mp4")
         
         print("Download complete.")
     else:
@@ -69,9 +70,10 @@ for i in lol:
         }
     )
     track_name = track_response.json()['name']
+    artist_name = track_response.json()['artists'][0]['name']
 
-    print(track_name)
-    downloading(track_name)
+    print(track_name + " " + artist_name)
+    downloading(track_name+" "+artist_name)
 
 import os
 
@@ -86,3 +88,4 @@ for filename in os.listdir(folder_path):
         print(filename)
         convert_mp4_to_mp3(f"C:\g\pproject\spotify_song_downloader\songs\mp4\{filename}", f"C:\g\pproject\spotify_song_downloader\songs\mp3\{base_name}.mp3")
 
+print("All files have been downloaded and  converted.")
